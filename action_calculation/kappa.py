@@ -3,8 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.interpolate as interpolate
 
-import functions as f
-
+from functions.utils import der
 
 def kappa(i, C_cyl, V_cyl, RPhi):
     '''
@@ -32,7 +31,7 @@ def kappa(i, C_cyl, V_cyl, RPhi):
     # calculate L_z_grid for grid point, fit a function to it
     #to get R_g=f(L_z), put stars' L_z in it and get their guiding radius
   
-    omega = np.sqrt(f.der(yy_c1, xx_c1)[0] / xx_c1[2:-2])  
+    omega = np.sqrt(der(yy_c1, xx_c1)[0] / xx_c1[2:-2])  
     #units of omega km/(s*pc)
     print(f'got omega - shape {omega.shape}')
   
