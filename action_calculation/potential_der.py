@@ -6,8 +6,9 @@ from scipy.interpolate import UnivariateSpline
 import scipy.interpolate as interpolate
 import matplotlib.pyplot as plt
 
-import functions as f
-
+from functions.grid_functions import reduce_res
+from functions.utils import der
+from functions.data_reading import read_fitgridhdf5
 
 def potential_der(i,filepath,plot=False):
     """
@@ -16,14 +17,14 @@ def potential_der(i,filepath,plot=False):
     """    
     print('Reading fitgrid and fitpot files')
   
-    fit_grid,fit_pot = f.read_fitgridhdf5(i,filepath)
+    fit_grid,fit_pot = read_fitgridhdf5(i,filepath)
   
     ##derivative with respect to R calculation:
     ##smoothening the values, fitting spline and bspline
     #taking the R values- only points within 1 pc of the galactic plane because the derivatives need to be calculated at z=0.
 ######(20000,2000) is grid_R[1:] which I removed from the fitgrid.py file and directly inputting the shape here
   
-    fit_grid_new, fit_pot_new,R_res,z_res= f.reduce_res(fit_grid,fit_pot,0,50,20000,2000)
+    fit_grid_new, fit_pot_new,R_res,z_res= reduce_res(fit_grid,fit_pot,0,50,20000,2000)
     print(f'Doing RPhi calc for i={i} Myr')
     x=np.unique(fit_grid_new[abs(fit_grid_new[:,1])<2][:,0])
   
@@ -56,7 +57,7 @@ def potential_der(i,filepath,plot=False):
         plt.show()
         plt.close('all')
         plt.figure(figsize=(10,10))
-        plt.plot(xx[2:-2], np.sqrt(f.der(yy,xx)[0]*xx[2:-2]),'--',label='bspline')
+        plt.plot(xx[2:-2], np.sqrt(der(yy,xx)[0]*xx[2:-2]),'--',label='bspline')
         plt.xlabel('R(pc)')
         plt.ylabel('circular velocity (km/s)')
         plt.legend()
