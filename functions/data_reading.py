@@ -2,7 +2,7 @@ import h5py
 import glob
 import os
 import numpy as np
-
+import csv
 
 #function to read hdf5 files and give coordinates, ID, masses, velocities, ages and potential arrays for star particles
 def read_stars(fname):
