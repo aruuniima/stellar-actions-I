@@ -1,8 +1,8 @@
 #imports
 import numpy as np
 
-import functions as f
-
+from functions.data_reading import read_oldstars, read_stars, read_darkmatter
+from functions.coordinate_conversion import cart_to_cylind, cart_to_cylind_v
 
 
 def mid_res_info(i,j,ID_list=None):
@@ -19,11 +19,11 @@ def mid_res_info(i,j,ID_list=None):
     # fileName = '/scratch/jh2/ax8338/midResRunNew/simulations/snapdir_{:03d}/'.format(i, i)
     fileName = '/scratch/jh2/cz4203/final_simulation/snapshots/snapdir_{:03d}/'.format(i, i)
     if j==0:
-        C, ID, M, V, A, Pot = f.read_oldstars(fileName)
+        C, ID, M, V, A, Pot = read_oldstars(fileName)
     elif j==1:
-         C, ID, M, V, A, Pot = f.read_stars(fileName)
+         C, ID, M, V, A, Pot = read_stars(fileName)
     elif j==2:
-        C, ID, V, M ,Pot = f.read_darkmatter(fileName)
+        C, ID, V, M ,Pot = read_darkmatter(fileName)
     
     #apply the shift
     # shift = np.array((0,0,-68.3)) #pc
@@ -41,7 +41,7 @@ def mid_res_info(i,j,ID_list=None):
         A=A[mid_mask]
         Pot=Pot[mid_mask]
 
-    C_cyl_all=f.cart_to_cylind(C)
+    C_cyl_all=cart_to_cylind(C)
     print(C_cyl_all.shape)
     ID_list=np.array(ID_list)
     print(ID_list.shape)
@@ -49,7 +49,7 @@ def mid_res_info(i,j,ID_list=None):
     #matching IDs and getting all parameters
     C_cyl=C_cyl_all[np.isin(ID,ID_list)]
     print(f'C_cyl_shape{C_cyl.shape}')
-    V_cyl=f.cart_to_cylind_v(V[np.isin(ID,ID_list)],C[np.isin(ID,ID_list)])
+    V_cyl=cart_to_cylind_v(V[np.isin(ID,ID_list)],C[np.isin(ID,ID_list)])
     M=M[np.isin(ID,ID_list)]
     A=A[np.isin(ID,ID_list)]
     ID=ID[np.isin(ID,ID_list)]
