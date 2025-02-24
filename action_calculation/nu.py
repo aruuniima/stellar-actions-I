@@ -7,8 +7,8 @@ from scipy.signal import savgol_filter
 import warnings
 from joblib import Parallel, delayed
 
-import functions as f
-
+from functions.utils import der_diff
+from functions.grid_functions import reduce_res
 
 def nu_calc_sparse(fit_grid_new_z, fit_pot_new_z, R_g_sparse, tol, z_tol, window, g):
     '''
@@ -31,7 +31,7 @@ def nu_calc_sparse(fit_grid_new_z, fit_pot_new_z, R_g_sparse, tol, z_tol, window
 
         xx_z = np.linspace(-1000, 1000, 2000)
         yy_bz = zPhi_b(xx_z)
-        der1 = f.der_diff(yy_bz, xx_z)[0]
+        der1 = der_diff(yy_bz, xx_z)[0]
         # print('got der in nu_calc_sparse function')
       
         # Fitting a straight line to derivative to estimate linear part
@@ -72,7 +72,7 @@ def nu(i, fit_grid, fit_pot, R_g_b, sparse_step=200):
     '''
     print('Reducing fitgrid res for nu calc')
     #     ######(20000,2000) is grid_R[1:] which I removed from the fitgrid.py file and directly inputting the shape here in the reduce_res function
-    fit_grid,fit_pot, _,_ = f.reduce_res(fit_grid,fit_pot,1,10,20000,2000)
+    fit_grid,fit_pot, _,_ = reduce_res(fit_grid,fit_pot,1,10,20000,2000)
     print('Resolution of fit_grid reduced. Trying to get nu')
     
     # Define sparse guiding radii
