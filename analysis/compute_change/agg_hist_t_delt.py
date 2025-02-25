@@ -5,11 +5,11 @@ import sys
 import matplotlib.pyplot as plt
 import matplotlib
 from tqdm import tqdm
-from utils import adding_histograms_from_chunks, fit_line
+from utils import adding_histograms_from_chunks
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: python aggregate_histograms.py <glob_word> <bin_size>")
+        print("Usage: python agg_hist_t_delt.py <glob_word> <bin_size>")
         sys.exit(1)
     
     glob_word = sys.argv[1]
