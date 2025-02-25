@@ -3,6 +3,24 @@ import h5py
 from tqdm import tqdm
 from scipy.signal import butter, filtfilt
 
+def convert_to_cartesian(phi_R_z):
+    """
+    Convert (phi, R, z) to Cartesian coordinates (x, y, z).
+    
+    Parameters:
+    - phi_R_z: ndarray, shape (N, 3), array of (phi, R, z) values for N stars
+    
+    Returns:
+    - cartesian_coords: ndarray, shape (N, 3), array of (x, y, z) coordinates
+    """
+    phi = phi_R_z[:, 0]
+    R = phi_R_z[:, 1]
+    z = phi_R_z[:, 2]
+    
+    x = R * np.cos(phi)
+    y = R * np.sin(phi)
+    
+    return np.column_stack((x, y, z))
 
 def filter_time_series(ts, b, a, counter):
     """
