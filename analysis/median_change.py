@@ -4,8 +4,8 @@ import sys
 from tqdm import tqdm
 from multiprocessing import Pool
 from scipy.signal import butter, filtfilt
-from utils.filtering import filter_time_series
-from utils.io_helpers import save_all_chunks
+from utils import filter_time_series
+from utils import save_all_chunks
 
 # Butterworth filter setup
 fs = 1.0  # Sampling frequency (1/snapshot interval)
