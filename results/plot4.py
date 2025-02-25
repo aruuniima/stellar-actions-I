@@ -1,84 +1,38 @@
-##data not publicly available for this so code just for reference
+##can use data from the data directory which is what the paths here are so code can be directly run to get fig4 plot from the paper
 
 import numpy as np
 import h5py
 imoprt matplotlib.pyplot as plt
 from scipy.signal import butter, filtfilt
 
-#read everything for one star ID (R,z,J_R,J_phi,J_z,M,t,A):
-def load_onestar_data_hdf5(i,k,file_path_list, sampled_ids):
-    """
-    Loads star data for sampled IDs from the HDF5 file in time order.
+# Read HDF5
+with h5py.File('stellar-actions-I/data/actions.h5', 'r') as f:
+    J = f['actions'][:]
+    C = f['coordinates'][:]
+    V = f['velocities'][:]
+    A = f['age'][:]
+    kappa = f['kappa'][:]
+    nu = f['nu'][:]
+    R_g = f['R_g'][:]
+    M = f['mass'][:]
+    ID = f['ID'][:]
     
-    :param file_path: Path to the HDF5 file.
-    :param sampled_ids: List or array of sampled star IDs.
-    :return: Arrays for the required star data at each snapshot for the sampled stars.
-    """
-    # Initialize lists to store the data for each variable
-    J_list, A_list, C_list,V_list,M = [], [],[],[],[]
-    
-    # Convert sampled_ids to a numpy array for efficient comparison
-    sampled_ids = np.array(sampled_ids)
-    for file_path in file_path_list:
-        with h5py.File(file_path, 'r') as hdf:
-            # Collect snapshot names and sort them
-            snapshot_names = sorted(hdf['snapshots'].keys(), key=lambda x: int(x.split('_')[1]))
-            print(np.shape(snapshot_names))
-            # Loop through snapshots in time order
-            for snapshot_name in snapshot_names[i:][::k]:
-                grp = hdf[f'snapshots/{snapshot_name}']
-                
-                # Get IDs of stars in the current snapshot
-                snapshot_ids_in_snapshot = grp['ID'][:]
-                
-                # Create a mask to select data for the sampled_ids present in the snapshot
-                ID_mask = np.isin(sampled_ids, snapshot_ids_in_snapshot)
-    
-                # Initialize arrays for the current snapshot with NaN values
-                J_snapshot = np.full((len(sampled_ids), 3), np.nan)  # Shape: (number_of_sampled_stars, 3)
-                C_snapshot = np.full((len(sampled_ids), 3), np.nan)  # Shape: (number_of_sampled_stars, 3)
-                V_snapshot = np.full((len(sampled_ids), 3), np.nan)  # Shape: (number_of_sampled_stars, 3)
-
-                A_snapshot = np.full(len(sampled_ids), np.nan)       # Shape: (number_of_sampled_stars)
-                M_snapshot = np.full(len(sampled_ids), np.nan) 
-                
-                
-                # Find the indices of the sampled IDs in the snapshot
-                star_indices = np.where(np.isin(snapshot_ids_in_snapshot, sampled_ids))[0]
-                if len(star_indices) > 0:
-                    # Map star_indices to the position in sampled_ids
-                    id_to_position = {id_: idx for idx, id_ in enumerate(sampled_ids)}
-                    mapped_indices = [id_to_position[snapshot_ids_in_snapshot[idx]] for idx in star_indices]
-                    
-                    # Assign data to the correct positions
-                    J_snapshot[mapped_indices] = grp['actions'][:].T[star_indices]
-                    C_snapshot[mapped_indices] = grp['coordinates'][:][star_indices]
-                    V_snapshot[mapped_indices] = grp['velocities'][:][star_indices]
-                    A_snapshot[mapped_indices] = grp['age'][:][star_indices]
-                    M_snapshot[mapped_indices] = grp['mass'][:][star_indices]
-                    
-                    
-                # Append the current snapshot data to the lists
-                J_list.append(J_snapshot)
-                C_list.append(C_snapshot)
-                V_list.append(V_snapshot)
-                A_list.append(A_snapshot)
-                M.append(M_snapshot)
-               
-                print(f"Loaded {snapshot_name}", end="\r")
-
-    # Convert the lists to numpy arrays for efficient processing
-    J_list = np.array(J_list)  # Shape: (number_of_snapshots, number_of_sampled_stars, 3)
-    A_list = np.array(A_list)  # Shape: (number_of_snapshots, number_of_sampled_stars)
-    C_list = np.array(C_list)
-    V_list = np.array(V_list)
-    M= np.array(M)
-    
-    return J_list,A_list,C_list,V_list,M
 
 k=1
 i=101
-J,A,C,V,M = load_onestar_data_hdf5(i,k,['/g/data/jh2/ax8338/action/results/NEW_nodupes.h5'],[22878914])
+# Find the index of the star with ID 22878914
+star_index = (ID == 22878914).nonzero()[0][0]  # Get the index of the star
+
+# Get the data for that star using the index
+J = J[star_index]
+C = C[star_index]
+V = V[star_index]
+A = A[star_index]
+kappa = kappa[star_index]
+nu = nu[star_index]
+R_g = R_g[star_index]
+M = M[star_index]
+
 J=J/M      #getting specific actions
 R=C[:,:,1].flatten()
 z=C[:,:,2].flatten()
