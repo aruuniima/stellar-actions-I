@@ -1,4 +1,4 @@
-##getting pre-calculated data from the data directory to get the plot 6 of the paper- heatmap
+##getting pre-calculated data from the data directory to get the plot 7 of the paper- absolute change in action
 
 import numpy as np
 import matplotlib.pyplot as plt
