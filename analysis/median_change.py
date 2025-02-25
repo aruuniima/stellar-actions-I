@@ -3,6 +3,7 @@ import h5py
 import sys
 from tqdm import tqdm
 from multiprocessing import Pool
+from scipy.signal import butter, filtfilt
 from utils.filtering import filter_time_series
 from utils.io_helpers import save_all_chunks
 
@@ -10,6 +11,9 @@ from utils.io_helpers import save_all_chunks
 fs = 1.0  # Sampling frequency (1/snapshot interval)
 cutoff = 1 / 30  # Desired cutoff frequency (inverse of time period in snapshots)
 order = 10  # Filter order
+
+# Design the filter
+b, a = butter(order, cutoff / (0.5 * fs), btype='low', analog=False)
 
 class Counter:
     def __init__(self):
