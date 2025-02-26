@@ -1,6 +1,6 @@
 # action_calculation Directory
 
-This directory contains the entire code for computing actions of stars (or initial stars, or dark matter particles) using simulation data and gravitational potential grid that we have calculates separately (available at reasonable requests). 
+This directory contains the entire code for computing actions of stars (or initial stars, or dark matter particles) using simulation data and gravitational potential grid that we have calculated separately (both of these are not provided in the repo but can be made available by the authors at a reasonable request). 
 
 The main script is `action_FINAL.py` that uses all other functions in the `action_calculation` directory to calculate actions (radial, vertical, and azimuthal for particles at a specific snapshot in time. The output is saved into an HDF5 file.
 
