@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 
-rel_JR = np.load('stellar-actions-I/data/plot_data/rel_JR.npz')
-rel_Jz = np.load('stellar-actions-I/data/plot_data/rel_Jz.npz')
+rel_JR = np.load('stellar-actions-I/data/rel_JR.npz')
+rel_Jz = np.load('stellar-actions-I/data/rel_Jz.npz')
 
 dt = rel_JR['dt']
 JR=rel_JR['JR']
