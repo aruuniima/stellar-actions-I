@@ -1,4 +1,6 @@
-##can use data from the data directory which is what the paths here are so code can be directly run to get fig4 plot from the paper
+# code to get fig4 plot from the paper- orbit and action evolution of single star particle- filtered and unfiltered.
+# can get action.h5 file from the following website and change the file paths here accordingly ('stellar-actions-I/data/actions.h5' in following code)
+# https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/
 
 import numpy as np
 import h5py
@@ -127,5 +129,5 @@ ax2.legend(loc='upper right')
 
 plt.tight_layout()
 
-plt.savefig('/g/data/jh2/ax8338/action/heatmap/orbit_paper.pdf')
+# plt.savefig('/g/data/jh2/ax8338/action/heatmap/orbit_paper.pdf')
     
