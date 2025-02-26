@@ -6,9 +6,8 @@ import matplotlib.cm as cm
 from tqdm import tqdm
 import glob
 from analysis.utils import adding_histograms_from_chunks
-from radial_period import radial_period    ##########CHNAGE
 
- # Orbital period for each radial bin - can use radial_period.py to calculate
+ # Orbital period for each radial bin - can read in from the file created by analysis/identify_radial_bins_calculate_change.py
 radial_period = [
     np.float64(92.87450079416625),
     np.float64(105.30116214696899),
