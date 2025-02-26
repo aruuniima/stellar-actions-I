@@ -6,18 +6,18 @@ import matplotlib.cm as cm
 from analysis.utils import fit_line
 
 #relative change in action (only as function of delta_t) for stars born in different regions of density
-dense_R= np.load('stellar-actions-I/data/plot_data/dense_JR.npz')
-sparse_R10 = np.load('stellar-actions-I/data/plot_data/sparse_JR.npz')
-sparse_R = np.load('stellar-actions-I/data/plot_data/verysparse_JR.npz')
+dense_R= np.load('stellar-actions-I/data/dense_JR.npz')
+sparse_R10 = np.load('stellar-actions-I/data/sparse_JR.npz')
+sparse_R = np.load('stellar-actions-I/data/verysparse_JR.npz')
 
 delta_t_bins = dense_R['dt']
 JR_d = dense_R['JR']
 JR_s= sparse_R['JR']
 JR_s10= sparse_R10['JR']
 
-dense_z= np.load('stellar-actions-I/data/plot_data/dense_Jz.npz')
-sparse_z10 = np.load('stellar-actions-I/data/plot_data/sparse_Jz.npz')
-sparse_z = np.load('stellar-actions-I/data/plot_data/verysparse_Jz.npz')
+dense_z= np.load('stellar-actions-I/data/dense_Jz.npz')
+sparse_z10 = np.load('stellar-actions-I/data/sparse_Jz.npz')
+sparse_z = np.load('stellar-actions-I/data/verysparse_Jz.npz')
 
 Jz_d = dense_z['Jz']
 Jz_s= sparse_z['Jz']
@@ -25,8 +25,8 @@ Jz_s10 = sparse_z10['Jz']
 
 
 #relative change in actions only as function of delta_t
-rel_JR_delt = np.load('stellar-actions-I/data/plot_data/rel_JR_delt.npz')
-rel_Jz_delt = np.load('stellar-actions-I/data/plot_data/rel_Jz_delt.npz')
+rel_JR_delt = np.load('stellar-actions-I/data/rel_JR_delt.npz')
+rel_Jz_delt = np.load('stellar-actions-I/data/rel_Jz_delt.npz')
 
 JR_delt = rel_JR_delt['JR']
 Jz_delt = rel_Jz_delt['Jz']
