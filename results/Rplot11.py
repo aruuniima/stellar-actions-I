@@ -1,6 +1,5 @@
 ##getting pre-calculated data from the data directory to get the plot 11 of the paper- dependence of action change on birth radius
-### need to uncompress the radial_bin folder in stellar-actions-I/data/plot_data/,
-# then the path 'stellar-actions-I/data/plot_data/radial_bin/' in the code will hold
+### get that radial_bin folder from <insert website address>
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.cm as cm
