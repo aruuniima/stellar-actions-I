@@ -1,4 +1,6 @@
 ## identify radial bins and also calculates action changes for each bin
+#writes out two more files: 1. number of stars in each radial bin
+#2. average orbital period of each radial bin
 import numpy as np
 import h5py
 from tqdm import tqdm
@@ -14,6 +16,8 @@ def identify_radial_bins(which_J):
 
     J, A, C, M, IDs = load_star_data_hdf5(i, k, ['path_to_action_result'], ID_star_list)
 
+    #calculating approximate orbital period of the stars
+    period_all = np.nanmean(2*np.pi*C[:,:,1]**2/(J[:,:,1]*1000*1.023/M),axis=0)
     # Define radial bins
     r_bins = np.arange(0, 19000, 1000)
     IDs_in_bins = {i: [] for i in range(len(r_bins))}  # Dictionary to store IDs by bin
@@ -39,6 +43,8 @@ def identify_radial_bins(which_J):
         num_stars_total = A_all.shape[1]
 
         print(f'Total number of stars in bin {l_R} = {num_stars_total}')
+        #calculating orbital period for this radial bin
+        period = np.nanmean(period_all[IDs_in_bins[l_R]]) #Myr
 
         # Setup the age bins
         k = 1 
@@ -80,6 +86,11 @@ def identify_radial_bins(which_J):
         # Save number of stars
         with open("path_to_radial_bin_numbers.txt", "a") as file:
             file.write(str(num_stars_total) + "\n")
+
+        #save radial period of stars
+        with open("path_to_radial_period.txt", "a") as file:
+            file.write(str(period) + "\n")
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
