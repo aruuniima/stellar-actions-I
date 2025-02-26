@@ -1,4 +1,8 @@
-## getting pre-calculated data from the data directory to get the plot 5 of the paper- distributions of actions at the last snapshot
+## code for plot 5 of the paper- distributions of actions at the last snapshot
+## can get action.h5 file from the following website and change the file paths here accordingly ('stellar-actions-I/data/actions.h5' in following code)
+## https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/
+
+import numpy as np
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
