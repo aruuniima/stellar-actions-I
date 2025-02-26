@@ -34,7 +34,7 @@ where `<i>` is the snapshot time in Myr.
 #### 1. `ID`:
 The unique ID of each star or particle (array of integers).
 #### 2. `J` ($J$):
-An array of shape (n_stars, 3) representing the calculated actions for each star in the order: Radial ($J_R$), Azimuthal ($J_{\phi}$), and Vertical ($J_z$) in units kpc km/s.
+An array of shape (n_stars, 3) representing the calculated actions for each star in the order: Radial ($J_R$), Azimuthal ($J_{\phi}$), and Vertical ($J_z$) in units M_sun kpc km/s.
 #### 3. `V` ($V$):
 The velocities of the stars/particles in cylindrical coordinates (array of shape (n_stars, 3)), representing the velocity components: ($V_{\phi}$, $V_R$, $V_z$) in units km/s.
 #### 4. `C` ($C$):
