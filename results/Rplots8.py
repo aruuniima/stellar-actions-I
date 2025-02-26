@@ -19,13 +19,13 @@ colors = colormap(np.linspace(0, 1, len(range(1, 8, 1))))
 fig, axs = plt.subplots(2, 1, figsize=(5,7),sharex='all')
 delta_t_bins=dt[:k]
 final_heatmap=JR[:,:k]
-axs[0].plot(delta_t_bins, (final_heatmap**2)[400,:], '-',c=colors[0],alpha=1)#, label="400 Myr age bin")
-axs[0].plot(delta_t_bins, (final_heatmap**2)[300,:], '-',c=colors[1],alpha=1)#, label="300 Myr age bin")
-axs[0].plot(delta_t_bins, (final_heatmap**2)[200,:], '-',c=colors[2],alpha=1)#, label="200 Myr age bin")
-axs[0].plot(delta_t_bins, (final_heatmap**2)[100,:], '-',c=colors[3],alpha=1)#, label="100 Myr age bin")
-axs[0].plot(delta_t_bins, (final_heatmap**2)[50,:], '-',c=colors[4],alpha=1)#, label="50 Myr age bin")
-axs[0].plot(delta_t_bins, (final_heatmap**2)[10,:], '-',c=colors[5],alpha=1)#, label="10 Myr age bin")
-axs[0].plot(delta_t_bins, (final_heatmap**2)[5,:], '-',c=colors[6],alpha=1)#, label="5 Myr age bin")
+axs[0].plot(delta_t_bins, (final_heatmap**2)[400,:], '-',c=colors[0],alpha=1)
+axs[0].plot(delta_t_bins, (final_heatmap**2)[300,:], '-',c=colors[1],alpha=1)
+axs[0].plot(delta_t_bins, (final_heatmap**2)[200,:], '-',c=colors[2],alpha=1)
+axs[0].plot(delta_t_bins, (final_heatmap**2)[100,:], '-',c=colors[3],alpha=1)
+axs[0].plot(delta_t_bins, (final_heatmap**2)[50,:], '-',c=colors[4],alpha=1)
+axs[0].plot(delta_t_bins, (final_heatmap**2)[10,:], '-',c=colors[5],alpha=1)
+axs[0].plot(delta_t_bins, (final_heatmap**2)[5,:], '-',c=colors[6],alpha=1)
 
 
 axs[0].set_ylabel(r"$\langle \delta J_{R}^2 \rangle$")
