@@ -4,8 +4,8 @@
 
 import np
 import matlplotlib.pyplot as plt
-star = np.load('stellar-actions-I/data/plot_data/star.npz')
-initial_star = np.load('stellar-actions-I/data/plot_data/initial_star.npz')
+star = np.load('stellar-actions-I/data/star.npz')
+initial_star = np.load('stellar-actions-I/data/initial_star.npz')
 
 z = star['z']
 zi=initial_star['z']
