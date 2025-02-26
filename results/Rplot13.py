@@ -11,7 +11,7 @@ z = star['z']
 zi=initial_star['z']
 
 vz= star['vz']
-vzi = intial_star['vz']
+vzi = initial_star['vz']
 
 fig, axs = plt.subplots(3, 1, figsize=(5,7),sharex='all')
 
