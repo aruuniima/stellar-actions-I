@@ -6,16 +6,16 @@ import matplotlib.cm as cm
 from analysis.utils import fit_line
 
 #relative change in actions as function of delta_t and t
-rel_JR = np.load('stellar-actions-I/data/plot_data/rel_JR.npz')
-rel_Jz = np.load('stellar-actions-I/data/plot_data/rel_Jz.npz')
+rel_JR = np.load('stellar-actions-I/data/rel_JR.npz')
+rel_Jz = np.load('stellar-actions-I/data/rel_Jz.npz')
 
 dt = rel_JR['dt']
 JR=rel_JR['JR']
 Jz = rel_Jz['Jz']
 
 #relative change in actions only as function of delta_t
-rel_JR_delt = np.load('stellar-actions-I/data/plot_data/rel_JR_delt.npz')
-rel_Jz_delt = np.load('stellar-actions-I/data/plot_data/rel_Jz_delt.npz')
+rel_JR_delt = np.load('stellar-actions-I/data/rel_JR_delt.npz')
+rel_Jz_delt = np.load('stellar-actions-I/data/rel_Jz_delt.npz')
 
 JR_delt = rel_JR_delt['JR']
 Jz_delt = rel_Jz_delt['Jz']
