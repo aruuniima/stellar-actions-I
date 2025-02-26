@@ -5,16 +5,16 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 #relative change in action of simulation stars as function of t and delta_t
-rel_JR = np.load('stellar-actions-I/data/plot_data/rel_JR.npz')
-rel_Jz = np.load('stellar-actions-I/data/plot_data/rel_Jz.npz')
+rel_JR = np.load('stellar-actions-I/data/rel_JR.npz')
+rel_Jz = np.load('stellar-actions-I/data/rel_Jz.npz')
 
 dt = rel_JR['dt']
 JR=rel_JR['JR']
 Jz = rel_Jz['Jz']
 
 #relative change in action for initial stars as function of only delta_t
-init_R= np.load('stellar-actions-I/data/plot_data/init_JR.npz')
-init_z = np.load('stellar-actions-I/data/plot_data/init_Jz.npz')
+init_R= np.load('stellar-actions-I/data/init_JR.npz')
+init_z = np.load('stellar-actions-I/data/init_Jz.npz')
 
 initJR =init_R['JR']
 initJz= init_z['Jz']
