@@ -1,3 +1,4 @@
+## getting pre-calculated data from the data directory to get the plot 5 of the paper- distributions of actions at the last snapshot
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
@@ -24,8 +25,8 @@ with h5py.File('stellar-actions-I/data/actions.h5', 'r') as f:
     A = f['age'][:]
     M = f['mass'][:]
 
-J=J[0,:,:]/M.T  #specific actions
-R=C[0,:,1]/1000  #radius in kpc
+J=J[-1,:,:]/M.T  #specific actions at the last snapshot
+R=C[-1,:,1]/1000  #radius in kpc at the last snapshot
 A=A.T.flatten()
 
 def distribution(ages, Jz,age_bin_size=50):
