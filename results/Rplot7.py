@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 
-abs_JR = np.load('stellar-actions-I/data/plot_data/abs_JR.npz')
-abs_Jz = np.load('stellar-actions-I/data/plot_data/abs_Jz.npz')
-abs_Jphi = np.load('stellar-actions-I/data/plot_data/abs_Jphi.npz')
+abs_JR = np.load('stellar-actions-I/data/abs_JR.npz')
+abs_Jz = np.load('stellar-actions-I/data/abs_Jz.npz')
+abs_Jphi = np.load('stellar-actions-I/data/abs_Jphi.npz')
 
 delta_t_bins = abs_Jphi['dt']
 JR=abs_JR['JR']
