@@ -3,7 +3,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+from analysis.utils import fit_line
 
+#relative change in action (only as function of delta_t) for stars born in different regions of density
 dense_R= np.load('stellar-actions-I/data/plot_data/dense_JR.npz')
 sparse_R10 = np.load('stellar-actions-I/data/plot_data/sparse_JR.npz')
 sparse_R = np.load('stellar-actions-I/data/plot_data/verysparse_JR.npz')
@@ -20,6 +22,26 @@ sparse_z = np.load('stellar-actions-I/data/plot_data/verysparse_Jz.npz')
 Jz_d = dense_z['Jz']
 Jz_s= sparse_z['Jz']
 Jz_s10 = sparse_z10['Jz']
+
+
+#relative change in actions only as function of delta_t
+rel_JR_delt = np.load('stellar-actions-I/data/plot_data/rel_JR_delt.npz')
+rel_Jz_delt = np.load('stellar-actions-I/data/plot_data/rel_Jz_delt.npz')
+
+JR_delt = rel_JR_delt['JR']
+Jz_delt = rel_Jz_delt['Jz']
+
+#linear fit for z
+#in Myr, extent of the linear fit
+t1z=5
+t2z=40      
+m,b,r_square,y = fit_line(dt[t1z:t2z], ((Jz_delt**2))[t1z:t2z])
+
+#linear fit for R
+#in Myr, extent of the linear fit
+t1R=5
+t2R=50      
+m1,b1,r_square1,y1 = fit_line(dt[t1R:t2R], ((JR_delt**2))[t1R:t2R])
 
 colormap = cm.get_cmap('viridis', len(range(1, 8, 1)))
 colors = colormap(np.linspace(0, 1, len(range(1, 8, 1))))
