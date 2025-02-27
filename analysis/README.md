@@ -48,3 +48,22 @@ python3 agg_hist_t_delt.py <glob_word> <bin_size>
 where:
 - `<glob_word>` is the pattern used to find relevant HDF5 files.
 - `<bin_size>` is the integer specifying age bin resolution for processing. Its default value is 5999 and hence, it only needs to be specified if you have changed the age bin resolution inside the `median_change.py` script's `process_chunk_filter` function
+
+## `agg_hist_delt.py`
+This script  is similar to `agg_hist_t_delt.py`, but instead of calculating the median change in stellar actions ($J_R, J_{\phi}, J_z$) as a function of both stellar age and time interval ($\Delta t$), it computes the median solely as a function of $\Delta t$.
+
+Like the previous script, it searches for relevant HDF5 files using `glob_word`, processes the histograms read from these files, and calculates the median $\Delta J$ for $\Delta t$ bin. To do this, the values of $\Delta J$ across all age bins are combined into a single histogram for each $\Delta t$ bin. The remaining process is identical to `agg_hist_t_delt.py`.
+
+#### Input data:
+- The input HDF5 files and path structure are the same as in `agg_hist_t_delt.py`.
+- Update the input (`hdf5_file_list`) and output (`np.savez_compressed()`) paths in `main()`, marked with `#change path here`.
+#### Output data:
+- Compressed NumPy archive (`.npz`) containing:
+  - `dt`: Time interval ($\Delta t$) bin edges.
+  - `J`: 1D array containing median $\Delta J$ values for each $\Delta t$.
+#### Usage:
+Once the file paths have been updated, the script can be run using:
+```
+python3 agg_hist_delt.py <glob_word> <bin_size>
+```
+where the variables are the same as in the previous script.
