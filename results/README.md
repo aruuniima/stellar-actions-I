@@ -10,3 +10,7 @@ The `RplotX.py` scripts correspond to the figures in the results section of the 
 
 For `Rplot4.py`, `Rplot5.py`, and `Rplot11.py`, you will need to download the necessary data from this [website](https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/). After downloading the data, you must update the file paths in the corresponding scripts to point to the location of the downloaded files.
 
+The scripts can be run directly using Python after editing the file paths (if required), e.g.:
+```
+python3 Rplot6.py
+```
