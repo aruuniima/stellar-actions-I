@@ -72,3 +72,18 @@ python3 agg_hist_delt.py <glob_word> <bin_size>
 where the variables are the same as in the previous script.
 
 ## `identify_dense_sparse.py`
+This script identifies stars born in dense, sparse, and very sparse regions based on their 5th nearest neighbour (5NN) distances which act as proxy for the local stellar density at birth. The corresponding action (`J`) and age (`A`) data of these stars is then saved which can be used in `median_change.py` and `agg_hist_delt.py` scripts to compute action changes over time. 
+
+The script reads star data from `actions.h5`, which can be downloaded from [this webpage](https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/) and contains actions, coordinates, velocities, ages, masses, and IDs for a subset of our entire sample at all snapshots. Positions at birth are used to calculate 5NN distance using `cKDTree` and stars are classified into density categories based on predefined 5NN distance (see the script or the paper). The values of actions and ages for the stars in different categories are saved in `.npy` format for further analysis.
+#### Input data:
+`stellar-actions-I/data/actions.h5` is the input path used in the script. The data can be downloaded from the previously specified link and the input path should match its location.
+#### Output data:
+- `J_sparse.npy`, `A_sparse.npy`: Actions and ages of stars in the sparse region.
+- `J_very_sparse.npy`, `A_very_sparse.npy`: Actions and ages of stars in the very sparse region.
+- `J_dense.npy`, `A_dense.npy`: Actions and ages of stars in the dense region.
+  #### Usage:
+  Before running the script, update the output file paths (`#change path here`). Once paths are set, run:
+```
+python3 identify_dense_sparse.py
+  ```
+
