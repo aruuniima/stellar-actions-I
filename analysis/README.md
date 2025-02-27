@@ -86,4 +86,21 @@ The script reads star data from `actions.h5`, which can be downloaded from [this
 ```
 python3 identify_dense_sparse.py
   ```
+## `identify_radial_bins_calculate_change.py`
+This script identifies stars born in different radial bins and computes action changes over time for each bin. It also calculates and writes out the number of stars in each radial bin and their average orbital periods.
+   
+The script reads star data from `actions.h5`, which can be downloaded from [this webpage](https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/) and contains actions, coordinates, velocities, ages, masses, and IDs for a subset of our entire sample at all snapshots. The radial bins are defined from 0 to 18kpc in 1kpc steps are stars are assigned to these bins. For each bin, orbital period is estimated and action changes are calculated using `median_change.py` and the output HDF5 files are stored for each radial bin.
 
+#### Input data:
+`stellar-actions-I/data/actions.h5` is the input path used in the script. The data can be downloaded from the previously specified link and the input path should match its location.
+#### Output data:
+- Radial bin action change results (`.h5` files, one per radial bin) are saved as `file_path = f'path_to_results_J{which_J}_{l_R}kpcbin.h5'`
+- Number of stars in each radial bin (`path_to_radial_bin_numbers.txt`)
+- Average orbital period for each bin (`path_to_radial_period.txt`)
+You should modify all the filepaths in the script (marked with `#change path here`) to set your desired save location.
+  #### Usage:
+  Run the script with a command-line argument specifying the action component: 
+```
+python3 identify_radial_bins.py <which_J>
+  ```
+where `<which_J>` is the same variable as in earlier scripts.
