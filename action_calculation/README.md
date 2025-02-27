@@ -14,7 +14,7 @@ where,
 - `<snapshot_time_in_Myr>`: The snapshot in Myr
 - `<particle_type>`: The type of particle (0: initial stars, 1: simulation stars, 2: dark matter particles).
 
-The rest of the scripts are as follows:
+For the rest of the scripts, very short descriptions are provided below. See the paper for details of the entire methodology:
 ### 1. `actioncalc.py`: 
 This script defines the `action_func()` function, which calculates the actions for stars using the provided potential grid, velocities, and positions. It also calculates `kappa` and `nu` (epicyclic frequencies), which are used in the action calculation.
 ### 2. `kappa.py`:
