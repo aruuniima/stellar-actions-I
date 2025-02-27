@@ -10,8 +10,11 @@ from utils import convert_to_cartesian
 
 k = 1
 i = 101
+
+#change path here
 ID_star_list = np.loadtxt('path_to_ID_list')
 
+#change path here
 J, A, C, M, IDs = load_star_data_hdf5(i, k, ['path_to_action_results_hdf5_file'], ID_star_list)
 
 def compute_5th_nn_distances(positions):
@@ -23,7 +26,7 @@ def compute_5th_nn_distances(positions):
     return distances[:, 5]
 
 # Define your distance bins 
-distance_bins = np.array([0.2,0.5,1, 2.35, 3.185869,1323.5])  # Example bins in parsecs last two bins 89th and 91st percentile
+distance_bins = np.array([0.2,0.5,1, 2.35, 3.185869,1323.5])  # Example bins: 0.5 pc is smoothing length, 2.35 and 3.18 is 89-91 percentile and 1323.5 pc is 99th percentile of 5th NN distance
     
 # Initialize lists to collect star IDs for the densest and sparsest regions
 dense_region_ids = []
@@ -71,7 +74,7 @@ A_very_sparse = A[:,very_sparse_star_indices]
 J_dense = J[:,dense_star_indices,:]/M[:,dense_star_indices,np.newaxis]
 A_dense = A[:,dense_star_indices]
 
-
+#change path here for all the following:
 np.save('path_to_save/J_sparse.npy',J_sparse)
 np.save('path_to_save/A_sparse.npy',A_sparse)
 np.save('path_to_save/J_very_sparse.npy',J_very_sparse)
