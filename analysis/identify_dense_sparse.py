@@ -14,6 +14,7 @@ from utils import convert_to_cartesian
 k = 1
 i = 101
 
+#change path here if required
 with h5py.File('stellar-actions-I/data/actions.h5', 'r') as f:
     J = f['actions'][:]
     C = f['coordinates'][:]
