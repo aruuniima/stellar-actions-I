@@ -1,1 +1,13 @@
-# stellar-actions-I
+# stellar-actions-I Repository
+
+This repository contains the entire code and part of the data for the analysis of stellar actions in a galactic simulation, which is part of the paper titled "*Their currents turn awry, and lose the name of action. I: Fundamental limits to orbit reconstruction due to non-conservation of stellar actions*" (in preparation, submitted) by Arunima et al. The project includes several directories for different aspects of the analysis, and each directory has a README file that describes the directory and its scripts in detail. The directory structure is briefly outlined below:
+
+1. `action_calculation` contains the scripts for the calculation of stellar actions from the raw simulation data. These scripts cannot be run directly as the raw simulation data and the potential grid calculated from it are not publicly available. These are included for reference.
+2. `analysis` contains the main scripts useful for analyzing the stars' actions and their evolution once the actions for all stars at all snapshots are available. These scripts focus on the calculation of changes in stellar actions (relative or absolute) and the identification of stars born in different regions (density or radial bins). This analysis has been performed by us and is presented in the above paper.
+3. `data` contains various data files resulting from the analysis scripts in the previous directory. These files can be used to generate plots from the paper using the scripts in the `results` directory. The data files are described in the README file within this directory.
+4. `functions` contains general function scripts used throughout the project, providing essential functions for data manipulation, coordinate conversion, etc. These are primarily used in the background scripts and do not need to be directly used by the user.
+5. `results` contains scripts that generate the figures featured in the associated paper. The README file in this directory provides further details on how to use these scripts.
+
+Some scripts require external data, which can be downloaded from the [website](https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/). Before running scripts, you may need to update the file paths in the scripts. These required changes are specifically mentioned in the README files of the relevant directories and are marked with `#change path here` in the scripts. The scripts in `analysis` and `results` can generally be run directly using Python, and the usage is described in the README files within those directories.
+
+The project requires Python 3 and several scientific libraries including NumPy, Matplotlib, Scipy, h5py, joblib, etc.
