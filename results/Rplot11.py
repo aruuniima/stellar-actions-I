@@ -42,7 +42,7 @@ def load_data(component, l_R):
     elif component == "z":
         glob_word = f'*vz_Jz_{l_R}kpc*'
     
-    # HDF5 file list (replace with path)
+    # HDF5 file list (change path here)
     hdf5_file_list = glob.glob(f'stellar-actions-I/data/plot_data/radial_bin/{glob_word}.h5')
     
     # adding_histograms_from_chunks function 
