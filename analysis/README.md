@@ -70,3 +70,5 @@ Once the file paths have been updated, the script can be run using:
 python3 agg_hist_delt.py <glob_word> <bin_size>
 ```
 where the variables are the same as in the previous script.
+
+## `identify_dense_sparse.py`
