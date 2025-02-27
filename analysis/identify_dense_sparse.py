@@ -1,6 +1,9 @@
 ##unlike radial bins script, it only identifies the dense, sparse and very sparse region stars and saves their J and A, 
 ## which can then be used to calculate action changes using the median_change.py script.
 
+## can get action.h5 file from the following website and change the file paths here accordingly ('stellar-actions-I/data/actions.h5' in following code)
+## https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/
+
 import numpy as np
 import h5py
 from scipy.spatial import cKDTree
@@ -11,11 +14,14 @@ from utils import convert_to_cartesian
 k = 1
 i = 101
 
-#change path here
-ID_star_list = np.loadtxt('path_to_ID_list')
+with h5py.File('stellar-actions-I/data/actions.h5', 'r') as f:
+    J = f['actions'][:]
+    C = f['coordinates'][:]
+    V = f['velocities'][:]
+    A = f['age'][:]
+    M = f['mass'][:]
+    IDs = f['ID'][:]
 
-#change path here
-J, A, C, M, IDs = load_star_data_hdf5(i, k, ['path_to_action_results_hdf5_file'], ID_star_list)
 
 def compute_5th_nn_distances(positions):
     """
