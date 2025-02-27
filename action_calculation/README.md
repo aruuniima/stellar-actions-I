@@ -1,4 +1,4 @@
-# action_calculation Directory
+# `action_calculation` Directory
 
 This directory contains the complete code for computing the actions of stars, initial stars, or dark matter particles using simulation data and a precomputed gravitational potential grid. These datasets are not included in the repository but can be provided upon reasonable request from the authors.
 
