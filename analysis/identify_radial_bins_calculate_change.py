@@ -1,6 +1,11 @@
 ## identify radial bins and also calculates action changes for each bin
 #writes out two more files: 1. number of stars in each radial bin
 #2. average orbital period of each radial bin
+
+
+## can get action.h5 file from the following website and change the file paths here accordingly ('stellar-actions-I/data/actions.h5' in following code)
+## https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/
+
 import numpy as np
 import h5py
 from tqdm import tqdm
@@ -12,9 +17,15 @@ def identify_radial_bins(which_J):
     # Load the star data
     k = 1
     i = 101
-    ID_star_list = np.loadtxt('path_to_ID_list')
-
-    J, A, C, M, IDs = load_star_data_hdf5(i, k, ['path_to_action_result'], ID_star_list)
+    
+    #change path here if required
+    with h5py.File('stellar-actions-I/data/actions.h5', 'r') as f:
+        J = f['actions'][:]
+        C = f['coordinates'][:]
+        V = f['velocities'][:]
+        A = f['age'][:]
+        M = f['mass'][:]
+        IDs = f['ID'][:]
 
     #calculating approximate orbital period of the stars
     period_all = np.nanmean(2*np.pi*C[:,:,1]**2/(J[:,:,1]*1000*1.023/M),axis=0)
@@ -79,15 +90,18 @@ def identify_radial_bins(which_J):
                 else:
                     raise ValueError("Bin centres mismatch between chunks!")
 
-        # Save results
+        # Save results 
+        #change path here
         file_path = f'path_to_results_J{which_J}_{l_R}kpcbin.h5'
         save_all_chunks(file_path, [[adding_trial, bin_centres_reference]], age_bins, delta_t_bins)
 
         # Save number of stars
+        #change path here
         with open("path_to_radial_bin_numbers.txt", "a") as file:
             file.write(str(num_stars_total) + "\n")
 
         #save radial period of stars
+        #change path here
         with open("path_to_radial_period.txt", "a") as file:
             file.write(str(period) + "\n")
 
