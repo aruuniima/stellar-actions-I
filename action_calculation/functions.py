@@ -4,13 +4,8 @@ sys.path.append('/apps/python3/3.12.1/lib/python3.12/site-packages')
 sys.path.append('g/data/jh2/ax8338/testvenv/bin/')
 import scipy as sc
 import numpy as np
-import pandas as pd
-from scipy import integrate
 import matplotlib.pyplot as plt
-from collections import OrderedDict
 import matplotlib._color_data as mcd
-import matplotlib.animation as ani
-import itertools
 import os
 import glob
 import time
@@ -25,8 +20,6 @@ import scipy.interpolate as interpolate
 matplotlib.rcParams.update(matplotlib.rcParamsDefault)
 from scipy.spatial import KDTree
 from tqdm import tqdm
-from numpy import genfromtxt
-import json
 hydrogenMassFraction=0.76
 
 #FUNCTIONS
