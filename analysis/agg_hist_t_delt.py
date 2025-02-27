@@ -28,6 +28,7 @@ def main():
     medians = medians[:-1, 1:]
     delta_t_bins = delta_t_bins[1:]
     age_bins = age_bins[:-1]
+    #change path here
     np.savez_compressed(f'path/{glob_word}_tdelt.npz', dt=delta_t_bins, J=medians)    #saves the median
 
 if __name__ == "__main__":
