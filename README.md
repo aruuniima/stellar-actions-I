@@ -10,4 +10,4 @@ This repository contains the entire code and part of the data for the analysis o
 
 Some scripts require external data, which can be downloaded from the [website](https://www.mso.anu.edu.au/~arunima/stellar-actions-I-data/). Before running scripts, you may need to update the file paths in the scripts. These required changes are specifically mentioned in the README files of the relevant directories and are marked with `#change path here` in the scripts. The scripts in `analysis` and `results` can generally be run directly using Python, and the usage is described in the README files within those directories.
 
-The project requires Python 3 and several scientific libraries including NumPy, Matplotlib, Scipy, h5py, joblib, etc.
+The project requires Python 3.12.1 and several scientific libraries listed in `requirements.txt`.
