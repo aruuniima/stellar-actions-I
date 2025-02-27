@@ -11,11 +11,12 @@ This script computes and stores histograms of changes in stellar actions ($J_R, 
 
   #### Input data:
   - `J.npy`: 3D array of stellar actions ($J_R, J_{\phi}, J_z$) of stars across time snapshots- shape:(snapshots, stars, 3)
-  - `A.npy`: 2D array of stellar ages across time snapshots- shape: (snapshots, stars)
+  - `A.npy`: 2D array of stellar ages across time snapshots- shape: (snapshots, stars).
+    
   Before running the script, you must update the paths in the `main()` function to match the locations of the datasets: path to `J.npy` and `A.npy` as well as the path to save the HDF5 output file. These locations are marked in the script with comment `#change path here`.
-#### Output data
+#### Output data:
 - HDF5 file that contains histograms of $\Delta J$ binned by both stellar age and time interval. The median is not computed in this script but in a separate script that has the function to read and combine the HDF5 files as well.
-#### Usage
+#### Usage:
 Once the file paths have been changed, the script can be run using:
 ```
 python3 median_change.py <which_J> <l> <relative>
@@ -24,3 +25,26 @@ where:
 - `<which_J>` specifies the action component with 0 for $J_R$, 1 for $J_{\phi}$ and 2 for $J_z$.
 - `<l>` specifies the batch number with `l=1` for first 80k stars, `l=2` for stars 80k-160k, etc.
 - `<relative>` specifies if it computes relative change in action (1) or absolute change in action (0).
+
+## `agg_hist_t_delt.py`
+This script aggregates histograms of changes in stellar actions ($J_R, J_{\phi}, J_z$) that were previously stored in HDF5 files, computes the median change as a function of stellar age and time interval ($\Delta t$), and saves the results as a compressed NumPy archive (.npz).
+
+The script reads multiple HDF5 files matching a given filename pattern (`glob_word`), processes the histograms, and calculates the median $\Delta J$ for each age and $\Delta t$ bin. For each combination of stellar age and time interval, the script constructs a cumulative distribution function (CDF) from the summed up histograms across all different processing chunks. The median change is extracted as the value corresponding to the 50th percentile in the CDF. The computed median values, along with the corresponding age and $\Delta t$ bin edges, are saved in a compressed NumPy file (.npz). The output filename is constructed using `glob_word`, ensuring consistency with input files.
+
+#### Input data:
+- HDF5 files: These contain the histograms of change in action binned by stellar age and time interval. The script searches for the files automatically useing `glob_word` which should be based on the file naming pattern from the previous script. For example, if you saved files as `rel_JR{l}.h5` for realtive changes in radial action across batches (`l=1,2,...`), setting `glob_word = '*rel_JR*.h5'` will include all matching HDF5 files, allowing you to compute medians across all batches.
+- Bin size(`bin_size`): Specifies the resolution of bins for age and time interval, default value=5999.
+  
+As with the previous script, before running the script, update the paths in the `main()` function: path to the histogram HDF5 files and the output path to where `.npz` files will be saved. These locations have been marked in the script with the comment `#change path here`.
+#### Output data:
+- Compressed NumPy archive (`.npz`) containing:
+  - `dt`: Time interval ($\Delta t$) bin edges.
+  - `J`: 2D array containing median $\Delta J$ values for each (stellar age, time interval) combination.
+#### Usage:
+Once the file paths have been changed, the script can be run using:
+```
+python3 agg_hist_t_delt.py <glob_word> <bin_size>
+```
+where:
+- `<glob_word>` is the pattern used to find relevant HDF5 files.
+- `<bin_size>` is the integer specifying age bin resolution for processing. Its default value is 5999 and hence, it only needs to be specified if you have changed the age bin resolution inside the `median_change.py` script's `process_chunk_filter` function
