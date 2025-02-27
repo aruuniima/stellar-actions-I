@@ -29,6 +29,7 @@ def main():
     
     medians1 = medians1[1:]
     delta_t_bins = delta_t_bins[1:]
+    #change path here
     np.savez_compressed(f'path/{glob_word}_delt.npz', dt=delta_t_bins, J=medians1)
 
       
